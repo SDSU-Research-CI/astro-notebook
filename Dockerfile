@@ -8,4 +8,6 @@ WORKDIR /home/${NB_USER}
 RUN conda install -y -c conda-forge -n base \
     astropy \
     astroquery \
-    photutils
+    photutils \
+    emcee \
+    corner
