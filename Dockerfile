@@ -45,7 +45,7 @@ WORKDIR /home/${NB_USER}
 
 # Set jovyan environment variables
 ENV PATH=$HOME/SKIRT/release/SKIRT/main:$PATH
-ENV PYTHONPATH=/home/${NB_USER}/PTS
+ENV PYTHONPATH=/opt/PTS
 
 COPY environment.yml environment.yml
 
