@@ -1,10 +1,16 @@
 # Astronomy Notebook
+Jupyter Notebook container image for Astronomy computation with Python.
 
-This Jupyter Notebook image contains the following software in addition to its base image:
+## Software Included
 - astropy
 - astroquery
 - photutils
 - emcee
 - corner
+- fsps
+- lxml
+- reportlab
+- SKIRT
+- PTS
 
-This image is based upon the [National Research Platform's version of the Jupyter Stack SciPy image](https://gitlab.nrp-nautilus.io/prp/jupyter-stack/-/tree/prp/images/scipy-notebook)
+This image is based upon the [Jupyter Stack SciPy image](https://github.com/jupyter/docker-stacks/tree/main/images/scipy-notebook)

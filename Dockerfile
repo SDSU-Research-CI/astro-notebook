@@ -1,4 +1,6 @@
-FROM gitlab-registry.nrp-nautilus.io/prp/jupyter-stack/scipy:v1.3
+ARG BASE_IMAGE=quay.io/jupyter/scipy-notebook:2024-07-29
+
+FROM ${BASE_IMAGE}
 
 # Switch to root for linux installs
 USER root
@@ -47,18 +49,15 @@ WORKDIR /home/${NB_USER}
 ENV PATH=$HOME/SKIRT/release/SKIRT/main:$PATH
 ENV PYTHONPATH=/opt/PTS
 
-COPY environment.yml environment.yml
+# Install python dependencies
+RUN mamba install -y -c conda-forge -n base \
+    astropy \
+    astroquery \
+    photutils \
+    emcee \
+    corner \
+    lxml \
+    reportlab
 
-RUN conda env update -n base -f environment.yml --prune \
- && rm environment.yml
-
-# # Install python dependencies
-# RUN conda install -y -c conda-forge -n base \
-#     astropy \
-#     astroquery \
-#     photutils \
-#     emcee \
-#     corner \
-#     fsps \
-#     lxml \
-#     reportlab
+RUN source activate base \
+ && pip install fsps
