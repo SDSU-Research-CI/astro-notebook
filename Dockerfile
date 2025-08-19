@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/jupyter/scipy-notebook:2024-07-29
+ARG BASE_IMAGE=quay.io/jupyter/scipy-notebook:2025-07-07
 
 FROM ${BASE_IMAGE}
 
@@ -26,8 +26,8 @@ RUN  cd /opt/SKIRT \
 RUN cd /opt/SKIRT/git \
  && ./makeSKIRT.sh
 
-RUN cd /opt/SKIRT/git \
- && ./downloadResources.sh --force
+# RUN cd /opt/SKIRT/git \
+#  && ./downloadResources.sh --force
 
 # Setup for PTS
 WORKDIR /opt
