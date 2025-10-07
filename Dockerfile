@@ -41,6 +41,14 @@ RUN cd /opt/PTS \
 
 RUN echo -e "alias pts=\"python -m pts.do\"" >> /etc/skel/.bashrc
 
+# Install rclone, kubectl and code-server
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"\
+ && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl \
+ && curl -O https://rclone.org/install.sh \
+ && bash /opt/install.sh \
+ && rm -f /opt/install.sh \
+ && curl -fsSL https://code-server.dev/install.sh | sh
+
 # Switch back to notebook user
 USER $NB_USER
 WORKDIR /home/${NB_USER}
@@ -61,3 +69,6 @@ RUN mamba install -y -c conda-forge -n base \
 
 RUN source activate base \
  && pip install fsps
+
+# Install code-server proxy
+RUN pip install jupyter-codeserver-proxy
